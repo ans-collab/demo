@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chuck Norris Joke</title>
+</head>
+<body>
+  <h1>Chuck Norris Joke</h1>
+  <button id="loadJoke">Get a joke</button>
+  <p id="joke">Loading...</p>
+
+  <script>
+    const jokeEl = document.getElementById("joke");
+
+    async function loadJoke() {
+      jokeEl.textContent = "Loading...";
+      try {
+        const response = await fetch("https://api.chucknorris.io/jokes/random");
+        if (!response.ok) {
+          throw new Error("Failed to fetch joke");
+        }
+        const data = await response.json();
+        jokeEl.textContent = data.value;
+      } catch (error) {
+        jokeEl.textContent = "Could not load joke.";
+        console.error(error);
+      }
+    }
+
+    document.getElementById("loadJoke").addEventListener("click", loadJoke);
+    loadJoke();
+  </script>
+</body>
+</html>
