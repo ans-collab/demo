@@ -19,7 +19,7 @@ public class HomeController {
 
     @GetMapping("/")
     public String home(Model model) {
-        model.addAttribute("pageTitle", "Chuck Norris Joke 1.0");
+        model.addAttribute("pageTitle", "Chuck Norris Joke 2.0");
 
         try {
             HttpHeaders headers = new HttpHeaders();
