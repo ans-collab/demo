@@ -73,7 +73,9 @@ jobs:
           if [ -n "$PID" ]; then
             echo "Stopping old process $PID"
             kill -15 $PID
+            echo "Killed: process $PID"
             sleep 5
+            echo "sleep 5"
           fi
           
           # 2. Start the new process completely detached from the shell
