@@ -76,6 +76,13 @@ jobs:
           java -version
           
           cd /home/${{ secrets.EC2_USERNAME }}/app
+
+          # 1.1. Find the actual JAR file name
+          JAR_FILE=$(ls *.jar 2>/dev/null | head -1)
+          if [ -z "$JAR_FILE" ]; then
+            echo "ERROR: No JAR files found in $(pwd)"
+            exit 1
+          fi
           
           # 1. Stop the old process
           PID=$(pgrep -f "demo-0.0.1-SNAPSHOT.jar")
