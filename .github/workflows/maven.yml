@@ -70,7 +70,7 @@ jobs:
           if ! command -v java &> /dev/null; then
             echo "Installing Java..."
             sudo yum update -y
-            sudo yum install -y java-21-amazon-corretto
+            sudo yum install -y java-26-amazon-corretto
           fi
           
           java -version
