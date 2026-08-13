@@ -77,7 +77,7 @@ jobs:
           fi
           
           # Start the new JAR in the background and log output
-          nohup java -jar demo-jar.jar > app.log 2>&1 &
+          nohup java -jar demo-0.0.1-SNAPSHOT.jar > app.log 2>&1 &
           echo "Application started in background."
    
           
