@@ -83,17 +83,19 @@ jobs:
             echo "ERROR: No JAR files found in $(pwd)"
             exit 1
           fi
+
+          echo "Found JAR: $JAR_FILE"
           
           # 1. Stop the old process
-          echo "Stopping old process"
-          pkill -f "demo-0.0.1-SNAPSHOT.jar" || true
+          #echo "Stopping old process"
+          #pkill -f "demo-0.0.1-SNAPSHOT.jar" || true
 
-          sleep 5
+          #sleep 5
 
-           if pgrep -f "demo-0.0.1-SNAPSHOT.jar" > /dev/null; then
-             echo "Application still running. Force killing.."
-             pkill -9 -f "demo-0.0.1-SNAPSHOT.jar"  || true
-           fi  
+           #if pgrep -f "demo-0.0.1-SNAPSHOT.jar" > /dev/null; then
+            # echo "Application still running. Force killing.."
+             #pkill -9 -f "demo-0.0.1-SNAPSHOT.jar"  || true
+           #fi  
 
           
           #PID=$(pgrep -f "demo-0.0.1-SNAPSHOT.jar")
@@ -104,20 +106,18 @@ jobs:
             #sleep 5
            # echo "sleep 5"
            # fi
-
-           # 1.1. Find the actual JAR file name
-          JAR_FILE=$(ls *.jar 2>/dev/null | head -1)
-          if [ -z "$JAR_FILE" ]; then
-            echo "ERROR: No JAR files found in $(pwd)"
-            exit 1
-          fi
-  
-          echo "Found JAR: $JAR_FILE"
           
           # 2. Start the new process completely detached from the shell
-          echo "Launching new JAR..."
-          BUILD_ID=dontKillMe nohup java -jar demo-0.0.1-SNAPSHOT.jar > app.log 2>&1 &
+          #echo "Launching new JAR..."
+          #BUILD_ID=dontKillMe nohup java -jar demo-0.0.1-SNAPSHOT.jar > app.log 2>&1 &
+
+          echo "Found JAR: $JAR_FILE"
           
+          # Restart the systemd service
+          echo "Restarting demo service..."
+          sudo systemctl restart demo
+          
+      
           # 3. Give it 3 seconds to spin up and verify it didn't crash instantly
           sleep 3
           if pgrep -f "demo-0.0.1-SNAPSHOT.jar" > /dev/null; then
