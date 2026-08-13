@@ -85,14 +85,25 @@ jobs:
           fi
           
           # 1. Stop the old process
-          PID=$(pgrep -f "demo-0.0.1-SNAPSHOT.jar")
-          if [ -n "$PID" ]; then
-            echo "Stopping old process $PID"
-            kill -9 $PID
-            echo "Killed: process $PID"
-            sleep 5
-            echo "sleep 5"
-          fi
+          echo "Stopping old process"
+          pkill -f "demo-0.0.1-SNAPSHOT.jar" || true
+
+          sleep 5
+
+           if pgrep -f "demo-0.0.1-SNAPSHOT.jar" > /dev/null; then
+             echo "Application still running. Force killing.."
+             pkill -9 -f "demo-0.0.1-SNAPSHOT.jar"  || true
+           fi  
+
+          
+          #PID=$(pgrep -f "demo-0.0.1-SNAPSHOT.jar")
+          #if [ -n "$PID" ]; then
+            #echo "Stopping old process $PID"
+            #kill -15 $PID
+            #echo "Killed: process $PID"
+            #sleep 5
+           # echo "sleep 5"
+           # fi
 
            # 1.1. Find the actual JAR file name
           JAR_FILE=$(ls *.jar 2>/dev/null | head -1)
