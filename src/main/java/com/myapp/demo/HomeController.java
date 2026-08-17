@@ -52,4 +52,11 @@ public class HomeController {
 
         return "index";
     }
+
+    @GetMapping("/getPageTwo")
+    public String getPageTwo(Model model) {
+        model.addAttribute("pageTitle", "Page Two");
+        model.addAttribute("message", "Welcome to Page Two");
+        return "PageTwo";
+    }
 }
