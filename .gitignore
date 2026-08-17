@@ -1,7 +1,7 @@
 HELP.md
-!target/
-!/lib/*.jar
-!/target/*.jar
+/target/
+/lib/*.jar
+/target/*.jar
 .mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
