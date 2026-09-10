@@ -1,12 +1,61 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+  <style>
+    body {
+      min-height: 100vh;
+      min-height: 100dvh;
+      margin: 0;
+      padding: 1rem;
+      box-sizing: border-box;
+      font-family: Arial, Helvetica, sans-serif;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    #pageTitle {
+      margin: 0 0 1rem;
+      font-size: 3rem; 
+    }
+    #msg { 
+      margin: 0 0 2rem;
+      font-size: 2rem;
+    }
+     .actions {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1rem;
+    }
+    .actions button {
+      min-width: 10rem;
+      padding: 1rem 2rem;
+      border: none;
+      border-radius: 0.5rem;
+      font-size: 1.25rem;
+      font-weight: bold;
+      cursor: pointer;
+    }
+  </style>
+
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title th:text="${pageTitle}">Chuck Norris Joke</title>
+  <title th:text="${pageTitle}">Cheesy Jokes Corner</title>
+  <script>
+    function callGetJokes(jokeType) {
+      console.log("calling getJokes.." + jokeType);
+      window.location.href = "/getJokes?jokeType=" + jokeType;
+    }
+  </script>
 </head>
 <body>
-  <h1 th:text="${pageTitle}">Chuck Norris Joke</h1>
-  <p th:text="${joke}">Loading...</p>
+  <p id="pageTitle" th:text="${pageTitle}">Loading...</p>
+  <p id="msg" th:text="${msg}">Loading...</p>
+  <div class="actions"> 
+    <button type="button" name="jokeType" value="chuck" onclick="callGetJokes('chuck')">Chuck Norris joke</button>
+    <button type="button" name="jokeType" value="dad" onclick="callGetJokes('dad')">Dad jokes</button>
+  </div>
 </body>
 </html>

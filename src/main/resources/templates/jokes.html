@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title th:text="${pageTitle}">Jokes</title>
+  <style>
+    body { 
+      min-height: 100vh;
+      min-height: 100dvh;
+      margin: 0;
+      padding: 1rem;
+      box-sizing: border-box;
+      font-family: Arial, Helvetica, sans-serif;
+      text-align: center;
+      display: grid;
+      grid-template-rows: minmax(0, 1fr) auto;
+    }
+    #jokeType { font-size:3rem; font-weight: bold; }
+    #apiResult { 
+      min-height: 0;
+      margin: 0;
+      white-space: pre-line;
+      font-size: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .actions {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem 0;
+    }
+    .actions button {
+      min-width: 10rem;
+      padding: 1rem 2rem;
+      border: none;
+      border-radius: 0.5rem;
+      font-size: 1.25rem;
+      font-weight: bold;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <!--<p id="jokeType" th:text="${jokeType}">Selected joke type</p>-->
+  <p id="apiResult" aria-live="polite"></p>
+
+  <div class="actions">
+    <button type="button" name="jokeType" onclick="window.location.href='/'"> Back </button>
+    <button type="button" name="jokeType" onclick="loadJoke()"> New Joke </button>
+  </div>
+
+    <script>
+    const result = document.getElementById('apiResult');
+    const params = new URLSearchParams(window.location.search);
+    const jokeType = params.get('jokeType');    
+    const jokeUris = { 
+      chuck: 'https://api.chucknorris.io/jokes/random',
+      dad: 'https://jokelikeadad.com/api/random'
+    };
+
+    async function loadJoke() { 
+      try {
+        const uri = jokeUris[jokeType];
+
+        console.log("uri..", uri);
+
+        if (!uri) {
+          throw new Error('Unknown joke type');
+        }
+
+        const response = await fetch(
+          '/get?uri=' + encodeURIComponent(uri) +
+          '&jokeType=' + encodeURIComponent(jokeType)
+        );
+      
+        if (!response.ok) {
+          throw new Error('Request failed');
+        }
+          result.textContent = await response.text();
+        } catch (error) {
+          result.textContent = 'Could not load joke.';
+        } finally { }
+    } 
+      
+    loadJoke();
+  </script>
+ 
+</body>
+</html>
