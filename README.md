@@ -5,9 +5,10 @@ A simple extensible Spring boot project that generates random jokes based on the
 
 
 ## URL
-<div style="border: 1px solid #ccc; padding: 10px;" markdown="1">
+
+<div markdown="1">
   
-  <p>[ttp://54.85.26.64:8080/](http://54.85.26.64:8080/)</p>
+  htttp://54.85.26.64:8080/](http://54.85.26.64:8080/)
   
 </div>
 
