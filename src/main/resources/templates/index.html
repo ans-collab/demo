@@ -44,9 +44,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title th:text="${pageTitle}">Cheesy Jokes Corner</title>
   <script>
-    function callGetJokes(jokeType) {
+    function callGetJokes(jokeType,uri) {
       console.log("calling getJokes.." + jokeType);
-      window.location.href = "/getJokes?jokeType=" + jokeType;
+      window.location.href = "/getJokes?jokeType=" + jokeType ;
     }
   </script>
 </head>
@@ -54,8 +54,14 @@
   <p id="pageTitle" th:text="${pageTitle}">Loading...</p>
   <p id="msg" th:text="${msg}">Loading...</p>
   <div class="actions"> 
-    <button type="button" name="jokeType" value="chuck" onclick="callGetJokes('chuck')">Chuck Norris joke</button>
-    <button type="button" name="jokeType" value="dad" onclick="callGetJokes('dad')">Dad jokes</button>
+    <button 
+      type="button"
+      th:each="jokeType : ${jokeTypes}"
+      th:text="${jokeType.displayName}"
+      th:data-type="${jokeType.type}"
+      th:onclick="callGetJokes(this.dataset.type)"
+    >
+    </button>
   </div>
 </body>
 </html>

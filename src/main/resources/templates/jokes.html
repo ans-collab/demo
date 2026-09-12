@@ -45,7 +45,6 @@
   </style>
 </head>
 <body>
-  <!--<p id="jokeType" th:text="${jokeType}">Selected joke type</p>-->
   <p id="apiResult" aria-live="polite"></p>
 
   <div class="actions">
@@ -57,25 +56,16 @@
     const result = document.getElementById('apiResult');
     const params = new URLSearchParams(window.location.search);
     const jokeType = params.get('jokeType');    
-    const jokeUris = { 
-      chuck: 'https://api.chucknorris.io/jokes/random',
-      dad: 'https://jokelikeadad.com/api/random'
-    };
-
+    
+    console.log("JokeType = " + jokeType)
+  
     async function loadJoke() { 
       try {
-        const uri = jokeUris[jokeType];
-
-        console.log("uri..", uri);
-
-        if (!uri) {
+          if (!jokeType) {
           throw new Error('Unknown joke type');
         }
 
-        const response = await fetch(
-          '/get?uri=' + encodeURIComponent(uri) +
-          '&jokeType=' + encodeURIComponent(jokeType)
-        );
+        const response = await fetch('/get?jokeType=' + encodeURIComponent(jokeType) );
       
         if (!response.ok) {
           throw new Error('Request failed');
