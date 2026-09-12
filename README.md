@@ -8,7 +8,7 @@ A simple extensible Spring boot project that generates random jokes based on the
 
 <div markdown="1">
   
-  htttp://54.85.26.64:8080/](http://54.85.26.64:8080/)
+  htttp://54.85.26.64:8080/(http://54.85.26.64:8080/)
   
 </div>
 
