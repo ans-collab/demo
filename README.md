@@ -4,5 +4,5 @@
 
 
 ### URL
-[{"type":"programming","setup":"What's the object-oriented way to become wealthy?","punchline":"Inheritance","id":16}]
+[http://54.85.26.64:8080/](http://54.85.26.64:8080/)
 
