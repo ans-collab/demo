@@ -1,13 +1,14 @@
 # Cheesy jokes generator
-## A simple extensible Spring Boot that generates jokes
 
 ## What is Jokes-Demo?
-Generates random jokes based on the joke category you chose
+A simple extensible Spring boot project that generates random jokes based on the joke category you chose
 
 
 ## URL
 <div style="border: 1px solid #ccc; padding: 10px;">
+  
   <p>[http://54.85.26.64:8080/](http://54.85.26.64:8080/)</p>
+  
 </div>
 
 
