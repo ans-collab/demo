@@ -31,7 +31,6 @@ public record JokeType (
                 "setup",
                 "punchline",
                 URI.create("https://official-joke-api.appspot.com/jokes/programming/random")
-                //URI.create("https://geek-jokes.sameerkumar.website/api?format=json")
             )    
         );  
     }  
