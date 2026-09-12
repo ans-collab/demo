@@ -8,7 +8,7 @@ A simple extensible Spring boot project that generates random jokes based on the
 
 <span style="display:block" class="note">
   
-  http://54.85.26.64:8080/
+  It does not work
   
 </span>
 
