@@ -6,11 +6,11 @@ A simple extensible Spring boot project that generates random jokes based on the
 
 ## URL
 
-<div markdown="1">
+<span style="display:block" class="note">
   
-  htttp://54.85.26.64:8080/(http://54.85.26.64:8080/)
+  http://54.85.26.64:8080/
   
-</div>
+</span>
 
 
 ## Tech Spec
